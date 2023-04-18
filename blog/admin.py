@@ -13,7 +13,7 @@ class BlogPostAdmin(admin.ModelAdmin):
 
     inlines = [CommentInline]
 	
-    list_display = ["author_name", "pub_date", "title"]
+    list_display = ["author_name","image_tag", "pub_date", "title"]
     list_filter = ["pub_date", "author_name", "title"]
     search_fields = ["title"]
 

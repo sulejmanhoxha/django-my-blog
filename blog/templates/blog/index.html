@@ -65,24 +65,24 @@
         <div class="flex flex-col md:mx-6 md:flex-row">
           <a
             class="my-2 transform text-gray-700 transition-colors duration-300 hover:text-blue-500 dark:text-gray-200 dark:hover:text-blue-400 md:mx-4 md:my-0"
-            href="#"
+            href="{% url 'blog:all_blogs'%}"
             >Blog</a
           >
           <a
             class="my-2 transform text-gray-700 transition-colors duration-300 hover:text-blue-500 dark:text-gray-200 dark:hover:text-blue-400 md:mx-4 md:my-0"
-            href="#"
+            href="#portofolio"
             >Portofolio</a
           >
           <a
             class="my-2 transform text-gray-700 transition-colors duration-300 hover:text-blue-500 dark:text-gray-200 dark:hover:text-blue-400 md:mx-4 md:my-0"
-            href="#"
+            href="#contact"
             >Contact</a
           >
         </div>
 
-        {% comment %}
         <div class="flex justify-center md:block">
           <button
+            id="darkmode-button"
             class="relative transform text-gray-700 transition-colors duration-300 hover:text-gray-600 dark:text-gray-200 dark:hover:text-gray-300"
           >
             <svg
@@ -102,7 +102,6 @@
             </svg>
           </button>
         </div>
-        {% endcomment %}
       </div>
     </div>
   </nav>
@@ -127,18 +126,18 @@
           </p>
 
           <a
-            href="{% static 'blog/Europass CV - Sulejman Hoxha.pdf' %}"
+            href="{% url 'blog:all_blogs'%}"
             target="_blank"
             class="mt-6 inline-block transform rounded-lg bg-blue-600 px-5 py-2 text-sm uppercase tracking-wider text-white transition-colors duration-300 hover:bg-blue-500 focus:bg-blue-500 focus:outline-none lg:w-auto"
           >
-            Download my CV
+            Read my blogs
           </a>
           <a
             href="{% static 'blog/Europass CV - Sulejman Hoxha.pdf' %}"
             target="_blank"
             class="mt-6 inline-block transform rounded-lg border border-blue-600 bg-transparent px-5 py-2 text-sm uppercase tracking-wider text-blue-600 transition-colors duration-300 hover:bg-blue-600 hover:text-white focus:bg-blue-600 focus:text-white focus:outline-none lg:w-auto"
           >
-            Read my blogs
+            Download my CV
           </a>
         </div>
       </div>
@@ -166,7 +165,7 @@
       </h1>
 
       <a
-        href="#"
+        href="{% url 'blog:all_blogs'%}"
         class="inline-block text-blue-500 underline hover:text-blue-400"
         >View all
         <svg
@@ -236,7 +235,7 @@
 </section>
 {% endif %}
 
-<section class="bg-white dark:bg-gray-900">
+<section class="bg-white dark:bg-gray-900" id="portofolio">
   <div class="container mx-auto px-6 py-10">
     <h1
       class="text-center text-2xl font-semibold capitalize text-gray-800 dark:text-white lg:text-3xl"
@@ -308,7 +307,7 @@
   </div>
 </section>
 
-<section class="min-h-screen bg-white dark:bg-gray-900 lg:flex">
+<section class="min-h-screen bg-white dark:bg-gray-900 lg:flex" id="contact">
   <div
     class="flex w-full flex-col justify-center p-8 lg:w-1/2 lg:bg-gray-100 lg:px-12 lg:dark:bg-gray-800 xl:px-32"
   >

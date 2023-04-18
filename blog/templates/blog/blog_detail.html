@@ -5,7 +5,7 @@
   >
     <div class="flex items-center justify-between">
       <a
-        href="#"
+        href="/"
         class="text-xl text-gray-700 hover:text-blue-500 dark:text-gray-200 dark:hover:text-blue-400"
       >
         Sulejman Hoxha
@@ -64,24 +64,24 @@
       <div class="flex flex-col md:mx-6 md:flex-row">
         <a
           class="my-2 transform text-gray-700 transition-colors duration-300 hover:text-blue-500 dark:text-gray-200 dark:hover:text-blue-400 md:mx-4 md:my-0"
-          href="#"
+          href="{% url 'blog:all_blogs'%}"
           >Blog</a
         >
         <a
           class="my-2 transform text-gray-700 transition-colors duration-300 hover:text-blue-500 dark:text-gray-200 dark:hover:text-blue-400 md:mx-4 md:my-0"
-          href="#"
+          href="/#portofolio"
           >Portofolio</a
         >
         <a
           class="my-2 transform text-gray-700 transition-colors duration-300 hover:text-blue-500 dark:text-gray-200 dark:hover:text-blue-400 md:mx-4 md:my-0"
-          href="#"
+          href="/#contact"
           >Contact</a
         >
       </div>
 
-      {% comment %}
       <div class="flex justify-center md:block">
         <button
+          id="darkmode-button"
           class="relative transform text-gray-700 transition-colors duration-300 hover:text-gray-600 dark:text-gray-200 dark:hover:text-gray-300"
         >
           <svg
@@ -101,124 +101,28 @@
           </svg>
         </button>
       </div>
-      {% endcomment %}
     </div>
   </div>
 </nav>
 
-{% comment %}
-<div>
-  <img
-    class="h-64 w-full rounded-lg object-cover object-center lg:h-80"
-    src="{% static 'blog/images/' %}{{ blog.picture }}"
-    alt=""
-  />
-
-  <div class="mt-8">
-    <h1 class="mt-4 text-xl font-semibold text-gray-800 dark:text-white">
-      {{blog.title}}
-    </h1>
-
-    <p class="mt-2 text-gray-500 dark:text-gray-400">{{ blog.content }}</p>
-
-    <div class="mt-4 flex items-center justify-between">
-      <div>
-        <a
-          href="#"
-          class="text-lg font-medium text-gray-700 hover:text-gray-500 hover:underline dark:text-gray-300"
-        >
-          {{blog.author_name}}
-        </a>
-
-        <p class="text-sm text-gray-500 dark:text-gray-400">
-          {{blog.pub_date}}
-        </p>
-      </div>
-
-      <a
-        href="#"
-        class="inline-block text-blue-500 underline hover:text-blue-400"
-        >Read more</a
-      >
-    </div>
-  </div>
-</div>
-{% endcomment %}
-
 <section class="bg-white dark:bg-gray-900">
   <div class="container mx-auto px-6 py-10">
-    <div class="lg:-mx-6 lg:flex">
-      <div class="lg:w-3/4 lg:px-6">
-        <img
-          class="h-80 w-full rounded-xl object-cover object-center xl:h-[28rem]"
-          src="{% static 'blog/images/' %}{{ blog.picture }}"
-          alt=""
-        />
+    <img
+      class="h-80 w-full rounded-xl object-cover object-center xl:h-[28rem]"
+      src="{% static 'blog/images/' %}{{ blog.picture }}"
+      alt=""
+    />
 
-        <div>
-          <p class="mt-6 text-sm uppercase text-blue-500">
-            {{blog.author_name}} - {{blog.pub_date}}
-          </p>
+    <div>
+      <p class="mt-6 text-sm uppercase text-blue-500">
+        {{blog.author_name}} - {{blog.pub_date}}
+      </p>
 
-          <h1
-            class="mt-4 max-w-lg text-2xl font-semibold leading-tight text-gray-800 dark:text-white"
-          >
-            {{blog.title}}
-          </h1>
-        </div>
-      </div>
-
-      <div class="mt-8 lg:mt-0 lg:w-1/4 lg:px-6">
-        <div>
-          <h3 class="capitalize text-blue-500">Design instument</h3>
-
-          <a
-            href="#"
-            class="mt-2 block font-medium text-gray-700 hover:text-gray-500 hover:underline dark:text-gray-400"
-          >
-            How to raise $100k+ by using blox ui kit on your design
-          </a>
-        </div>
-
-        <hr class="my-6 border-gray-200 dark:border-gray-700" />
-
-        <div>
-          <h3 class="capitalize text-blue-500">UI Resource</h3>
-
-          <a
-            href="#"
-            class="mt-2 block font-medium text-gray-700 hover:text-gray-500 hover:underline dark:text-gray-400"
-          >
-            Should you creat UI Product by using Blox?
-          </a>
-        </div>
-
-        <hr class="my-6 border-gray-200 dark:border-gray-700" />
-
-        <div>
-          <h3 class="capitalize text-blue-500">Premium Collection</h3>
-
-          <a
-            href="#"
-            class="mt-2 block font-medium text-gray-700 hover:text-gray-500 hover:underline dark:text-gray-400"
-          >
-            Top 10 Blocks you can get on Blox's collection.
-          </a>
-        </div>
-
-        <hr class="my-6 border-gray-200 dark:border-gray-700" />
-
-        <div>
-          <h3 class="capitalize text-blue-500">Premium kits</h3>
-
-          <a
-            href="#"
-            class="mt-2 block font-medium text-gray-700 hover:text-gray-500 hover:underline dark:text-gray-400"
-          >
-            Top 10 Ui kit you can get on Blox's collection.
-          </a>
-        </div>
-      </div>
+      <h1
+        class="mt-4 max-w-lg text-2xl font-semibold leading-tight text-gray-800 dark:text-white"
+      >
+        {{blog.title}}
+      </h1>
     </div>
 
     <div
