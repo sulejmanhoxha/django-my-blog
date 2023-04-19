@@ -2,56 +2,51 @@
 This repository contains the code for my personal blog website built with Django and Tailwind CSS.
 
 ## Installation
-1. Clone the repository
+### 1. Clone the repository
 Clone this repository by running the following command in your terminal:
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
+git clone git@github.com:sulejmanhoxha/django-my-blog.git
 ```
 
-2. Install Django
+### 2. Create virtual environment
 Make sure you have Python 3.10.5 and pip 23.0.1 installed on your computer. Then, create a virtual environment by running the following command:
 
- **On linux:**
+ **All the following commands are for Linux:**
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-3. Install required packages
+### 3. Install required packages
 Install the required packages by running the following command:
 
 ```bash
 pip install -r requirements.txt
 ```
-4. Install Tailwind CSS if you want to modify the project's look.
-This project uses Tailwind CSS for styling. To install Tailwind CSS, run the following command:
 
-```bash
-npm install
-npm run watch
-```
-After those commands open a new terminal tab or window
-
-5. Set up the database
-Create the database by running the following command:
-```bash
-python3 manage.py makemigrations
-python3 manage.py migrate
-```
-6. Load initial data
-Load the initial data into the database by running the following command:
-
-```bash
-python3 manage.py loaddata database_data.json
-```
-
-7. Run the server
+### 4. Run the server
 Finally, run the server with the following command:
 
 ```bash
 python3 manage.py runserver
 ```
 You should now be able to access the blog website at http://localhost:8000/.
+### 5. *Optional* - Install Tailwind CSS
+
+This project uses Tailwind CSS for styling and it should run without having it installed. If you want to modify the project's look you need to install Tailwind CSS. To do that open up a new terminal window or tab and run the following commands:
+
+```bash
+npm install
+npm run watch
+```
+
+### Potential problems
+If you have problems with the database run the following commands:
+```bash
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py loaddata database_data.json
+```
 
 ## Project Structure
 Here's a brief overview of the project structure:
