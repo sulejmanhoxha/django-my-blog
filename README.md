@@ -67,7 +67,13 @@ Here's a brief overview of the project structure:
 
 Some screenshots:
 ![alt text](https://github.com/sulejmanhoxha/django-my-blog/blob/master/screenshot1.png)
+
+***
+
 ![alt text](https://github.com/sulejmanhoxha/django-my-blog/blob/master/screenshot2.png)
+
+***
+
 ![alt text](https://github.com/sulejmanhoxha/django-my-blog/blob/master/screenshot3.png)
 
 ## Contributing
