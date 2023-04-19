@@ -1,9 +1,6 @@
 # README
 This repository contains the code for my personal blog website built with Django and Tailwind CSS.
 
-Some screenshots:
-![alt text](https://github.com/sulejmanhoxha/django-my-blog/blob/master/screenshot1.png)
-
 ## Installation
 ### 1. Clone the repository
 Clone this repository by running the following command in your terminal:
@@ -67,6 +64,11 @@ Here's a brief overview of the project structure:
 ./package.json # Contains project dependencies for Node.js
 ./package-lock.json # Lock file for project dependencies for Node.js
 ```
+
+Some screenshots:
+![alt text](https://github.com/sulejmanhoxha/django-my-blog/blob/master/screenshot1.png)
+![alt text](https://github.com/sulejmanhoxha/django-my-blog/blob/master/screenshot2.png)
+![alt text](https://github.com/sulejmanhoxha/django-my-blog/blob/master/screenshot3.png)
 
 ## Contributing
 If you find any issues or have suggestions for improvement, feel free to open an issue or submit a pull request.
