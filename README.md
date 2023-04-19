@@ -1,6 +1,9 @@
 # README
 This repository contains the code for my personal blog website built with Django and Tailwind CSS.
 
+Some screenshots:
+![alt text](https://github.com/sulejmanhoxha/django-my-blog/blob/master/screenshot1.png)
+
 ## Installation
 ### 1. Clone the repository
 Clone this repository by running the following command in your terminal:
