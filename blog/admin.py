@@ -17,7 +17,7 @@ class BlogPostAdmin(admin.ModelAdmin):
     list_filter = ["pub_date", "author_name", "title"]
     search_fields = ["title"]
 
-class CommentAdmin(admin.ModelAdmin):	
+class CommentAdmin(admin.ModelAdmin): 
     list_display = ["user", "blog_post", "pub_date"]
     list_filter = ["user", "blog_post"]
 
