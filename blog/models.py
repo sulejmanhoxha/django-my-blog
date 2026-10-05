@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils.safestring import mark_safe 
+from django.templatetags.static import static
+from django.utils.html import format_html
 
 class BlogPost(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -14,7 +15,8 @@ class BlogPost(models.Model):
         return self.title
     
     def image_tag(self): # new
-        return mark_safe('<img src="/../../media/%s" width="150" height="150" />' % (self.picture))
+        # pictures are saved in blog/static/blog/images (MEDIA_ROOT), so serve them as static files
+        return format_html('<img src="{}" width="150" height="150" />', static(f"blog/images/{self.picture}"))
 
 class Comment(models.Model):
     blog_post = models.ForeignKey(BlogPost, on_delete=models.CASCADE)

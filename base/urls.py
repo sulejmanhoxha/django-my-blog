@@ -23,4 +23,7 @@ from django.urls import include, path
 urlpatterns = [
     path("", include("blog.urls")),
     path("admin/", admin.site.urls),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# uploaded post pictures (used by the API "picture" URLs)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
