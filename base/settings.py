@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,10 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-0m=j*=h%!)vgp#_dlpw$5f#eobkqc(n30n^8oqmxv1kn^m8kwf"
+# Set DJANGO_SECRET_KEY in production. The fallback is for local development only.
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY", "django-insecure-local-development-only-change-me"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
 
 ALLOWED_HOSTS = ["localhost", "192.168.8.100", "127.0.0.1", ".vercel.app", ".now.sh"]
 
@@ -84,16 +88,26 @@ WSGI_APPLICATION = "base.wsgi.application"
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "trying_create_database",
-        "USER": "default",
-        "PASSWORD": "TW3NlFdX9Qnx",
-        "HOST": "ep-orange-wind-a2xsmvq0-pooler.eu-central-1.aws.neon.tech",
-        "PORT": "5432",
+# PostgreSQL (for example Neon on Vercel) when POSTGRES_HOST is set,
+# otherwise the local SQLite file. DJANGO_SQLITE_PATH can point SQLite elsewhere.
+if os.environ.get("POSTGRES_HOST"):
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.environ.get("POSTGRES_DB", ""),
+            "USER": os.environ.get("POSTGRES_USER", ""),
+            "PASSWORD": os.environ.get("POSTGRES_PASSWORD", ""),
+            "HOST": os.environ["POSTGRES_HOST"],
+            "PORT": os.environ.get("POSTGRES_PORT", "5432"),
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.environ.get("DJANGO_SQLITE_PATH", BASE_DIR / "db.sqlite3"),
+        }
+    }
 
 
 # Password validation
@@ -143,11 +157,8 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 10,
 }
 
-import os
-
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "blog/static/blog/images")
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "ui/static")]
 STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "ui/staticfiles")
