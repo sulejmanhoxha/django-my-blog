@@ -13,6 +13,7 @@ Make sure you have Python 3.10.5 and pip 23.0.1 installed on your computer. Then
 
  **All the following commands are for Linux:**
 ```bash
+cd django-my-blog/
 python3 -m venv .venv
 source .venv/bin/activate
 ```
@@ -31,7 +32,16 @@ Finally, run the server with the following command:
 python3 manage.py runserver
 ```
 You should now be able to access the blog website at http://localhost:8000/.
-### 5. *Optional* - Install Tailwind CSS
+
+This project offers three main links for you to interact with it:
+ - Landing page: http://localhost:8000/  - the main landing page for the visitors of the website
+ - Admin: http://localhost:8000/admin/  - for the administrators of the website. It allows managing of the website's content
+ - API :  you can access the api through these two links:
+    - http://localhost:8000/api/blogs/  - shows the blogs as a JSON
+    - http://localhost:8000/api/comments/  - shows the comments as a JSON  
+ 
+ 
+### *Optional* - Install Tailwind CSS
 
 This project uses Tailwind CSS for styling and it should run without having it installed. If you want to modify the project's look you need to install Tailwind CSS. To do that open up a new terminal window or tab and run the following commands:
 
@@ -41,7 +51,7 @@ npm run watch
 ```
 
 ### Potential problems
-If you have problems with the database run the following commands:
+If you have problems with the database, delete the db.sqlite3 file and run the following commands:
 ```bash
 python3 manage.py makemigrations
 python3 manage.py migrate
@@ -64,6 +74,17 @@ Here's a brief overview of the project structure:
 ./package.json # Contains project dependencies for Node.js
 ./package-lock.json # Lock file for project dependencies for Node.js
 ```
+
+Some screenshots:
+![alt text](https://github.com/sulejmanhoxha/django-my-blog/blob/master/screenshot1.png)
+
+***
+
+![alt text](https://github.com/sulejmanhoxha/django-my-blog/blob/master/screenshot2.png)
+
+***
+
+![alt text](https://github.com/sulejmanhoxha/django-my-blog/blob/master/screenshot3.png)
 
 ## Contributing
 If you find any issues or have suggestions for improvement, feel free to open an issue or submit a pull request.
