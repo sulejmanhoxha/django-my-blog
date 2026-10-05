@@ -1,90 +1,97 @@
-# README
-This repository contains the code for my personal blog website built with Django and Tailwind CSS.
+# django-my-blog
 
-## Installation
-### 1. Clone the repository
-Clone this repository by running the following command in your terminal:
+![django-my-blog: posts, threaded comments and a REST API](docs/brag.jpg)
+
+My personal blog website, built with Django and Tailwind CSS in April 2023. It has a landing page,
+a list of all posts, post pages with threaded comments (a reply sits under its parent comment), the
+Django admin to write posts, and a REST API (Django REST Framework) for the same posts and comments.
+
+## Stack
+
+- Python, Django 5.1, Django REST Framework
+- Tailwind CSS 3 (prebuilt `blog/static/blog/css/main.css`), Alpine.js for the mobile menu
+- SQLite for local work; PostgreSQL when `POSTGRES_HOST` is set (used for the Vercel deploy)
+
+## Pages and endpoints
+
+| URL | What it shows |
+|---|---|
+| `/` | Landing page with the latest three posts and a dark-mode toggle |
+| `/blog/` | All posts |
+| `/blog/<id>/` | One post with its comments and nested replies |
+| `/admin/` | Django admin: posts (with picture thumbnail and inline comments) and comments |
+| `/api/blogs/`, `/api/comments/` | DRF viewsets (list, create, read, update, delete). Login required: session or basic auth |
+
+## Run it
+
+Use Python 3.10 to 3.13 (Django 5.1 does not support Python 3.14).
+
 ```bash
-git clone git@github.com:sulejmanhoxha/django-my-blog.git
-```
-
-### 2. Create virtual environment
-Make sure you have Python 3.10.5 and pip 23.0.1 installed on your computer. Then, create a virtual environment by running the following command:
-
- **All the following commands are for Linux:**
-```bash
-cd django-my-blog/
+git clone https://github.com/sulejmanhoxha/django-my-blog.git
+cd django-my-blog
 python3 -m venv .venv
 source .venv/bin/activate
-```
-
-### 3. Install required packages
-Install the required packages by running the following command:
-
-```bash
 pip install -r requirements.txt
+python manage.py runserver
 ```
 
-### 4. Run the server
-Finally, run the server with the following command:
+Open http://localhost:8000/. The repository includes `db.sqlite3` with sample posts.
+
+To start from an empty database and load the sample data instead:
 
 ```bash
-python3 manage.py runserver
+export DJANGO_SQLITE_PATH=/tmp/blog.sqlite3
+python manage.py migrate
+python manage.py loaddata database_data.json -e contenttypes -e auth.permission -e admin.logentry -e sessions -e authtoken
+python manage.py createsuperuser
+python manage.py runserver
 ```
-You should now be able to access the blog website at http://localhost:8000/.
 
-This project offers three main links for you to interact with it:
- - Landing page: http://localhost:8000/  - the main landing page for the visitors of the website
- - Admin: http://localhost:8000/admin/  - for the administrators of the website. It allows managing of the website's content
- - API :  you can access the api through these two links:
-    - http://localhost:8000/api/blogs/  - shows the blogs as a JSON
-    - http://localhost:8000/api/comments/  - shows the comments as a JSON  
- 
- 
-### *Optional* - Install Tailwind CSS
+Or with Docker, without a local Python:
 
-This project uses Tailwind CSS for styling and it should run without having it installed. If you want to modify the project's look you need to install Tailwind CSS. To do that open up a new terminal window or tab and run the following commands:
+```bash
+docker run --rm -it -p 8000:8000 -v "$PWD":/app -w /app -e DJANGO_SQLITE_PATH=/tmp/blog.sqlite3 python:3.12 \
+  sh -c "pip install -r requirements.txt && python manage.py migrate && \
+         python manage.py loaddata database_data.json -e contenttypes -e auth.permission -e admin.logentry -e sessions -e authtoken && \
+         python manage.py runserver 0.0.0.0:8000"
+```
+
+### Environment variables
+
+See `.env.example`. All are optional for local work.
+
+| Name | Use |
+|---|---|
+| `DJANGO_SECRET_KEY` | Secret key. Set it in production; the default is for local development only |
+| `DJANGO_DEBUG` | `1` (default) or `0` |
+| `DJANGO_SQLITE_PATH` | Path of the SQLite file (default `db.sqlite3`) |
+| `POSTGRES_HOST`, `POSTGRES_PORT`, `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD` | Use PostgreSQL when `POSTGRES_HOST` is set |
+
+### Tailwind CSS (optional)
+
+The compiled CSS is committed, so you only need this to change the styles:
 
 ```bash
 npm install
-npm run watch
+npm run watch   # or: npm run build
 ```
 
-### Potential problems
-If you have problems with the database, delete the db.sqlite3 file and run the following commands:
-```bash
-python3 manage.py makemigrations
-python3 manage.py migrate
-python3 manage.py loaddata database_data.json
-```
+### Deploy on Vercel
 
-## Project Structure
-Here's a brief overview of the project structure:
+`vercel.json` and `build_files.sh` build `base/wsgi.py` with `@vercel/python` and collect the static
+files into `ui/staticfiles`. Set the environment variables above in the Vercel project.
+
+## Project structure
 
 ```
-./blog/    # Contains the Django app for the blog
-./base/    # Contains the Django project settings
-./static/  # Contains static files (CSS, JS, images, etc.)
-./templates/ # Contains the HTML templates
-./db.sqlite3  # SQLite database file
-./manage.py   # Django management script
-./README.md   # This file
-./requirements.txt  # Required Python packages
-./tailwind.config.js # Tailwind CSS configuration file
-./package.json # Contains project dependencies for Node.js
-./package-lock.json # Lock file for project dependencies for Node.js
+base/                 Django project settings and URLs
+blog/                 The blog app: models, views, DRF serializers and viewsets, admin
+blog/templates/blog/  base, index, all_blogs and blog_detail templates
+blog/static/blog/     Tailwind input and output CSS, JavaScript (dark mode), post images
+database_data.json    Sample data fixture
+docs/brag.jpg         Project image
 ```
 
-Some screenshots:
-![alt text](https://github.com/sulejmanhoxha/django-my-blog/blob/master/screenshot1.png)
+## License
 
-***
-
-![alt text](https://github.com/sulejmanhoxha/django-my-blog/blob/master/screenshot2.png)
-
-***
-
-![alt text](https://github.com/sulejmanhoxha/django-my-blog/blob/master/screenshot3.png)
-
-## Contributing
-If you find any issues or have suggestions for improvement, feel free to open an issue or submit a pull request.
+GPL-3.0, see `LICENSE`.
